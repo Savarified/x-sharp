@@ -10,8 +10,6 @@ class _var:
         self.value = value
         _vars.append(self)
 
-print(sys.argv)
-
 if (len(sys.argv) <= 1):
     print("error : missing commandline arguments")
     sys.exit()

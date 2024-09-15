@@ -4,20 +4,26 @@
 
 string greeting = "Hello world!!";
 disp (greeting);
-wait (1);
+float delay = 1;
+wait (delay);
 clear;
 
-int a = 0;
+int a = -4;
 int count = 4;
 
 repeat (count){
  disp ("a: "),
  disp (a),
- a += 2
+ a += 4
 };
 
 disp ("impressed yet?");
->! even got comments?? he must be a genius!!;
+wait (delay);
+clear;
+disp ("dont worry, graphics are on their way soon.");
+wait (1);
+disp ("we'll see ya soon!");
+>/ even got comments?? he must be a genius!!;
 
 <!>
 osadksnDASFODSKFBGNV
