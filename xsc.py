@@ -13,10 +13,11 @@ class _var:
 print(sys.argv)
 
 if (len(sys.argv) <= 1):
-    print("") #error : missing commandline arguments
-    #sys.exit()
+    print("error : missing commandline arguments")
+    sys.exit()
 
-sourceCode = open('test.xs')
+filePath = sys.argv[1]
+sourceCode = open(filePath)
 code = sourceCode.read()
 value = '\0'
 count = '\0'
