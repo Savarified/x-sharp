@@ -8,7 +8,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    char command[256] = "python xsc.py ";
+    char command[256] = "python3 xsc.py ";
     strcat(command, argv[1]);
 
     int result = system(command);

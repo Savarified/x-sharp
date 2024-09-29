@@ -1,7 +1,9 @@
 #include <stxs>;
-int a = 0;
-disp (a);
+if (10 == 10){
+    statement one;
+    statement two;
+};
 
 <!>
-
-making a programming language lol
+;
+what

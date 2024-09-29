@@ -1,9 +1,6 @@
 import sys
 import os
 import time
-import pygame
-
-os.system('clear')
 _datatypes = {'int', 'float', 'string'}
 _vars = []
 class _var:
@@ -13,71 +10,25 @@ class _var:
         self.value = value
         _vars.append(self)
 
-class _window:
-    def __init__(self,WIDTH, HEIGHT, name, screen):
-        self.WIDTH = WIDTH
-        self.HEIGHT = HEIGHT
-        self.name = name
-        self.screen = screen
-        
+print(sys.argv)
+
 if (len(sys.argv) <= 1):
-    filePath = 'server.xs'
-    #print("error : missing commandline arguments")
+    print("") #error : missing commandline arguments
     #sys.exit()
-else:
-    filePath = sys.argv[1]
-sourceCode = open(filePath)
+
+sourceCode = open('test.xs')
 code = sourceCode.read()
 value = '\0'
 count = '\0'
 
-pygame.init()
-globalWindow = _window(0,0,'WINDOW', 0)
-def init_window(x,y):
-    globalWindow.screen = pygame.display.set_mode((x,y))
-    globalWindow.WIDTH = x
-    globalWindow.HEIGHT = y
-
-def run_window():
-    pygame.display.set_caption(globalWindow.name)
-    run = True
-    while run:
-        pygame.display.flip()
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                run = False
-                pygame.quit()
-                sys.exit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    run = False
-                    pygame.quit()
-                    sys.exit()
-    
-
 def ticketer(code):
     code = code.replace('\n', '')
     commands = code.split(';')
-    #commands = commands.split('{')
-    full_commands = []
-    #print(commands)
-    for comm in range(len(commands)):
-        if(commands[comm] != '<!>'):
-            executer(commands[comm])
-            """if('{' in commands[comm]):
-                executer(commands[comm])
-                sub_commands = commands[comm].split('{')
-                for sub_comm in sub_commands:
-                    full_commands.append(sub_comm)
-            else:
-                full_commands.append(commands[comm])
-        else: break"""
-    #print(full_commands)
-
-"""
-if { is in command, split command by { into sub_commands;
-"""
+    command_index = 0
+    for comm in commands:
+        if(comm != '<!>'):
+            executer(comm)
+        command_index += 1
 
 def call(var_name):
     var_name = var_name.replace(',', '')
@@ -270,28 +221,4 @@ def executer(command):
         time.sleep(delay)
 
     if('clear' in args[0]): os.system('clear')
-
-    if('window' == args[0]):
-        args[1] = args[1].replace('(', '')
-        args[1] = args[1].replace(')', '')
-        x, y = args[1].split(',')
-        x = int(x)
-        y = int(y)
-        init_window(x,y)
-
-    if('window.run'== args[0]):
-        run_window()
-        print('ran')
-
-    if('window.name' == args[0]):
-        full_value = ''
-        i = 2
-        while i < (len(args)):
-            if(i > 2): full_value += ' '
-            full_value += args[i]
-            i+=1
-        full_value = full_value.replace('"', '')
-        globalWindow.name = full_value
-
-
 ticketer(code)
